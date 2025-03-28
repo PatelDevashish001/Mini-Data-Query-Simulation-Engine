@@ -3,6 +3,8 @@
 ## Overview
 A simple Flask-based API that simulates AI-driven SQL query processing, validation, and explanation.
 
+🌐 **Live API:** [Mini Data Query Simulation Engine](https://mini-data-query-simulation-engine-3sow.onrender.com)
+
 ## Features
 - Convert natural language queries into SQL.
 - Validate if a query type is supported.
@@ -48,6 +50,13 @@ Converts a natural language query to SQL and returns a simulated result.
   "result": { "total_sales": 35000 }
 }
 ```
+#### Curl Command:
+```sh
+curl -X POST https://mini-data-query-simulation-engine-3sow.onrender.com/query \
+     -H "X-API-Key: your-secure-api-key" \
+     -H "Content-Type: application/json" \
+     -d '{"query": "Get total sales for Q1 2024"}'
+```
 
 ### 2. Explain Query
 **POST /explain**  
@@ -64,6 +73,13 @@ Explains the intent of the query.
   "query": "Get total revenue for 2024",
   "interpretation": "Extracting revenue data from the database."
 }
+```
+#### Curl Command:
+```sh
+curl -X POST https://mini-data-query-simulation-engine-3sow.onrender.com/explain \
+     -H "X-API-Key: your-secure-api-key" \
+     -H "Content-Type: application/json" \
+     -d '{"query": "Get total revenue for 2024"}'
 ```
 
 ### 3. Validate Query
@@ -82,11 +98,21 @@ Checks if the query type is supported.
   "valid": false
 }
 ```
+#### Curl Command:
+```sh
+curl -X POST https://mini-data-query-simulation-engine-3sow.onrender.com/validate \
+     -H "X-API-Key: your-secure-api-key" \
+     -H "Content-Type: application/json" \
+     -d '{"query": "Show all employees hired in 2023"}'
+```
 
 ## Authentication
 Include an API key in the request headers:
 ```sh
-curl -X POST http://localhost:5000/query -H "X-API-Key: your-secure-api-key" -d '{"query": "Get total sales for Q1 2024"}' -H "Content-Type: application/json"
+curl -X POST https://mini-data-query-simulation-engine-3sow.onrender.com/query \
+     -H "X-API-Key: your-secure-api-key" \
+     -H "Content-Type: application/json" \
+     -d '{"query": "Get total sales for Q1 2024"}'
 ```
 
 ## Deployment
