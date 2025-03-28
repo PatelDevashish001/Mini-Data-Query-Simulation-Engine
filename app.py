@@ -40,8 +40,9 @@ def init_db():
 
 init_db()
 
-# Mock authentication (Replace with a proper auth mechanism if needed)
-API_KEY = "your-secure-api-key"
+
+API_KEY = os.getenv("API_KEY", "default-api-key")
+
 
 def authenticate(req):
     """Simple API key authentication"""
