@@ -3,21 +3,21 @@ import os, sqlite3
 
 app = Flask(__name__)
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-DB_PATH = os.path.join(BASE_DIR, "data.db")  # Keep SQLite inside the project
+DB_PATH = os.path.join(BASE_DIR, "data.db")  
 
-# Use `/persistent` if Render allows (not available on free plan)
+
 PERSISTENT_PATH = "/persistent/data.db"
 if os.path.exists("/persistent"):
     DB_PATH = PERSISTENT_PATH
 
-# 🔹 Database Helper Function
+#  Database Helper Function
 def get_db_connection():
     try:
         return sqlite3.connect(DB_PATH)
     except sqlite3.Error as e:
         return None
 
-# 🔹 Ensure database exists & create necessary tables
+#  Ensure database exists & create required  tables
 def init_db():
     conn = get_db_connection()
     if conn:
@@ -87,7 +87,7 @@ def query():
     if not sql:
         return jsonify({"error": "Unsupported query type"}), 400
 
-    # Store query in DB
+    # Storing query in DB
     conn = get_db_connection()
     if conn:
         try:
