@@ -9,7 +9,7 @@ A simple Flask-based API that simulates AI-driven SQL query processing, validati
 - Convert natural language queries into SQL.
 - Validate if a query type is supported.
 - Explain the query’s intent.
-- Store queries in an SQLite database.
+- Store queries in an SQLite database (mock database for testing).
 - Secure API with API Key authentication.
 
 ## Installation
@@ -114,6 +114,12 @@ curl -X POST https://mini-data-query-simulation-engine-3sow.onrender.com/query \
      -H "Content-Type: application/json" \
      -d '{"query": "Get total sales for Q1 2024"}'
 ```
+
+## Error Handling
+The API returns appropriate error messages for invalid queries and authentication failures:
+- **400 Bad Request** – Invalid input format.
+- **401 Unauthorized** – Missing or incorrect API key.
+- **500 Internal Server Error** – Unexpected errors.
 
 ## Deployment
 - Suitable for deployment on platforms like Render.
