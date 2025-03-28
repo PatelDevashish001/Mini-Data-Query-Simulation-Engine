@@ -1,2 +1,99 @@
-# Mini-Data-Query-Simulation-Engine
-A Flask-based API that translates user queries into SQL, provides mock results, validates queries, and explains logic. Uses SQLite for storage and supports API key authentication.
+# Mini Data Query Simulation Engine
+
+## Overview
+A simple Flask-based API that simulates AI-driven SQL query processing, validation, and explanation.
+
+## Features
+- Convert natural language queries into SQL.
+- Validate if a query type is supported.
+- Explain the query’s intent.
+- Store queries in an SQLite database.
+- Secure API with API Key authentication.
+
+## Installation
+1. Clone the repository:
+   ```sh
+   git clone <repo-url>
+   cd Mini-Data-Query-Simulation-Engine
+   ```
+2. Create a virtual environment and activate it:
+   ```sh
+   python -m venv venv
+   source venv/bin/activate  # On Windows use venv\Scripts\activate
+   ```
+3. Install dependencies:
+   ```sh
+   pip install -r requirements.txt
+   ```
+4. Run the application:
+   ```sh
+   python app.py
+   ```
+
+## API Endpoints
+### 1. Convert Query to SQL
+**POST /query**  
+Converts a natural language query to SQL and returns a simulated result.
+#### Request:
+```json
+{
+  "query": "Get total sales for Q1 2024"
+}
+```
+#### Response:
+```json
+{
+  "query": "get total sales for q1 2024",
+  "sql_equivalent": "SELECT SUM(amount) FROM sales WHERE quarter='Q1' AND year=2024;",
+  "result": { "total_sales": 35000 }
+}
+```
+
+### 2. Explain Query
+**POST /explain**  
+Explains the intent of the query.
+#### Request:
+```json
+{
+  "query": "Get total revenue for 2024"
+}
+```
+#### Response:
+```json
+{
+  "query": "Get total revenue for 2024",
+  "interpretation": "Extracting revenue data from the database."
+}
+```
+
+### 3. Validate Query
+**POST /validate**  
+Checks if the query type is supported.
+#### Request:
+```json
+{
+  "query": "Show all employees hired in 2023"
+}
+```
+#### Response:
+```json
+{
+  "query": "Show all employees hired in 2023",
+  "valid": false
+}
+```
+
+## Authentication
+Include an API key in the request headers:
+```sh
+curl -X POST http://localhost:5000/query -H "X-API-Key: your-secure-api-key" -d '{"query": "Get total sales for Q1 2024"}' -H "Content-Type: application/json"
+```
+
+## Deployment
+- Suitable for deployment on platforms like Render.
+- Ensure `data.db` persists for storing queries.
+- Update `API_KEY` for better security.
+
+## License
+MIT License
+
